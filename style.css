@@ -1,0 +1,79 @@
+body {
+  user-select: none;
+  position: sticky;
+}
+
+#title {
+    text-align: center;
+    font-size: 3em;
+    color: rebeccapurple;
+    font-family: Comfortaa, 'Arial Black', Arial, sans-serif;
+}
+
+#theButton {
+    text-align: center;
+    font-size: 4em;
+    color: rebeccapurple;
+    font-family: Comfortaa, 'Arial Black', Arial, sans-serif;
+    margin-top: 1em;
+    padding: 0;
+    font-weight: bolder;
+}
+
+#stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: center;
+    margin-top: 1.9em;
+    position: sticky;
+    top: 2em;
+    z-index: 999;
+}
+
+.stat {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    transform: scaleX(0.8);
+    font-size: 1.8em;
+    margin-bottom: 0.4em;
+}
+
+#gold { color: #8d8602; }
+#diamond { color: lightblue; }
+#rainbow { background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet); color: grey; }
+#gold::after, #diamond::after, #rainbow::after {
+    content: "✨";
+    opacity: 60%;
+    font-size: 40%;
+}
+
+h2 {
+    font-size: 2em;
+    text-align: center;
+    color: rebeccapurple;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+}
+
+.shopItem {
+    margin-left: 3em;
+    margin-bottom: 1.3em;
+    font-size: 1.5em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: blue;
+}
+
+.shopItem:hover { cursor: pointer; }
+
+.goldUpg { color: #7d6000; }
+.diamondUpg { color: cyan; }
+
+.minihr {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 60%;
+    display: block;
+}

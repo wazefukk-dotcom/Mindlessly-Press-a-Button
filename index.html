@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>MPaB!</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+  <h1 id="title">Mindlessly Press a Button</h1>
+
+  <hr>
+
+  <div id="theButton" onclick="presses += ppp; refresh();">Button</div>
+
+  <div id="stats">
+    <p id="presses" class="stat">Presses: 0</p>
+    <p id="perClick" class="stat">Presses per Press: 0</p>
+    <p id="gold" class="stat">Gold: 0</p>
+    <p id="diamond" class="stat">Diamond: 0</p>
+    <p id="rainbow" class="stat" style="display: none;">Rainbow: 0</p>
+  </div>
+
+  <hr>
+
+  <h2 id="shopHeader">Shop</h2>
+
+  <div id="shop">
+    <div class="shopItem" onclick="shop.P1ppp();">+1 Presses per Press (180)</div>
+    <div class="shopItem" onclick="shop.P5ppp();">+5 Presses per Press (500)</div>
+    <div class="shopItem" onclick="shop.auto();">+1 Autoclicker (30,000)</div>
+    <div class="shopItem" onclick="shop.getGold();">+1 Gold (440,000) </div>
+    <div class="shopItem" id="FasterAutos" onclick="shop.fasterAutos()">Faster Autos (20B) </div>
+
+    <hr class="minihr">
+
+    <div class="shopItem goldUpg" onclick="shop.autoBuyPresses()">AutoBuy +1 Presses (3 gold)</div>
+    <div class="shopItem goldUpg" onclick="shop.autoBuyPresses_5()">AutoBuy +5 Presses (13 gold)</div>
+    <div class="shopItem goldUpg" onclick="shop.autoBuyAuto()">AutoBuy Autoclicker (50 gold)</div>
+    <div class="shopItem goldUpg" onclick="shop.autoBuyGold()">AutoBuy Gold (100 gold)</div>
+    <div class="shopItem goldUpg" onclick="shop.getDiamond()">+1 Diamond (50,000 gold)</div>
+
+    <hr class="minihr">
+
+    <div class="shopItem diamondUpg" onclick="shop.GTP()">Convert Gold to Presses (4 diamond)</div>
+    <div class="shopItem diamondUpg" onclick="shop.PTG()">Convert Presses to Gold (4 diamond)</div>
+    <div class="shopItem diamondUpg" onclick="shop.AABP()">AutoAutoBuy Presses (10 diamond)</div>
+    <div class="shopItem diamondUpg" onclick="shop.AABP()">AutoBuy Diamond (100 diamond)</div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
