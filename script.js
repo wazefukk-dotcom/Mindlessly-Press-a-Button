@@ -1,8 +1,8 @@
-let presses = 1241421240,
-    ppp = 1124124124,
-    gold = 124121240,
-    diamond = 1241241420,
-    rainbow = 4121241240,
+let presses = 0,
+    ppp = 1,
+    gold = 0,
+    diamond = 0,
+    rainbow = 0,
     autoSpeed = 333,
     terminate = false;
 
@@ -400,6 +400,7 @@ document.addEventListener('keydown', function(e) {
             break;
     }
 });
+
 
 
 
