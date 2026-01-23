@@ -65,6 +65,7 @@ refresh();
 
 function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 
+// TODO: Add increasing prices for all upgrades
 let shop = {
     autocount: 0,
     autopressescount: 0,
@@ -367,6 +368,7 @@ document.addEventListener('keydown', function(e) {
             break;
     }
 });
+
 
 
 
