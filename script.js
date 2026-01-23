@@ -1,8 +1,8 @@
-let presses = 0,
-    ppp = 1,
-    gold = 0,
-    diamond = 0,
-    rainbow = 0,
+let presses = 1241421240,
+    ppp = 1124124124,
+    gold = 124121240,
+    diamond = 1241241420,
+    rainbow = 4121241240,
     autoSpeed = 333,
     terminate = false;
 
@@ -82,6 +82,17 @@ let shop = {
     autodiamondcount: 0,
     rainbowCount: 0,
     p1pppprice: 180,
+    p5pppprice: 500,
+    autoprice: 30000,
+    fasterautosprice: 30e9,
+    autobuypress1cost: 3,
+    autobuypress5cost: 13,
+    autobuyautocost: 50,
+    autobuygoldcost: 100,
+    gtpcost: 4,
+    ptgcost: 4,
+    aabpcost: 10,
+    funnelcost: 30,
 
     P1ppp: function () {
         if (presses >= this.p1pppprice) {
@@ -96,21 +107,25 @@ let shop = {
     },
 
     P5ppp: function () {
-        if (presses >= 500) {
-            presses -= 500;
+        if (presses >= this.p5pppprice) {
+            presses -= this.p5pppprice;
             ppp += 5;
             this.p5pppcount++;
+            this.p5pppprice = Math.round(this.p5pppprice * 1.15);
             document.getElementById("p5pppcounter").innerHTML = this.p5pppcount;
+            document.getElementById("p5pppprice").innerHTML = '(' + this.p5pppprice + ')';
             refresh();
         }
     },
 
     auto: async function () {
-        if (presses >= 30000) {
-            presses -= 30000;
+        if (presses >= this.autoprice) {
+            presses -= this.autoprice;
             refresh();
             this.autocount++;
+            this.autoprice = Math.round(this.autoprice * 1.15);
             document.getElementById("autocounter").innerHTML = this.autocount;
+            document.getElementById("autoprice").innerHTML = '(' + this.autoprice + ')';
             if (this.autocount > 1) return;
             while (true) {
                 if (terminate) break;
@@ -132,10 +147,12 @@ let shop = {
     },
 
     autoBuyPresses: async function () {
-        if (gold >= 3) {
-            gold -= 3;
+        if (gold >= this.autobuypress1cost) {
+            gold -= this.autobuypress1cost;
             refresh();
             this.autopressescount++;
+            this.autobuypress1cost = Math.ceil(this.autobuypress1cost * 1.15);
+            document.getElementById("autobuypress1cost").innerHTML = "(" + this.autobuypress1cost + ")";
             document.getElementById("autobuypress1counter").innerHTML = this.autopressescount;
             if (this.autopressescount > 1) return;
             while (true) {
@@ -149,10 +166,12 @@ let shop = {
     },
 
     autoBuyPresses_5: async function () {
-        if (gold >= 13) {
-            gold -= 13;
+        if (gold >= this.autobuypress5cost) {
+            gold -= this.autobuypress5cost;
             refresh();
             this.autopressescount_5++;
+            this.autobuypress5cost = Math.ceil(this.autobuypress5cost * 1.15);
+            document.getElementById("autobuypress5cost").innerHTML = "(" + this.autobuypress5cost + ")";
             document.getElementById("autobuypress5counter").innerHTML = this.autopressescount_5;
             if (this.autopressescount_5 > 1) return;
             while (true) {
@@ -166,10 +185,12 @@ let shop = {
     },
 
     autoBuyAuto: async function () {
-        if (gold >= 50) {
-            gold -= 50;
+        if (gold >= this.autobuyautocost) {
+            gold -= this.autobuyautocost;
             refresh();
             this.autoautocount++;
+            this.autobuyautocost = Math.ceil(this.autobuyautocost * 1.15);
+            document.getElementById("autobuyautocost").innerHTML = "(" + this.autobuyautocost + ")";
             document.getElementById("autobuyautocounter").innerHTML = this.autoautocount;
             if (this.autoautocount > 1) return;
             while (true) {
@@ -182,9 +203,11 @@ let shop = {
     },
 
     autoBuyGold: async function () {
-        if (gold >= 100) {
-            gold -= 100;
+        if (gold >= this.autobuygoldcost) {
+            gold -= this.autobuygoldcost;
             this.autogoldcount++;
+            this.autobuygoldcost = Math.ceil(this.autobuygoldcost * 1.15);
+            document.getElementById("autobuygoldcost").innerHTML = "(" + this.autobuygoldcost + ")";
             document.getElementById("autobuygoldcounter").innerHTML = this.autogoldcount;
             refresh();
             if (this.autogoldcount > 1) return;
@@ -200,13 +223,16 @@ let shop = {
     fasterAutos: function () {
         if (autoSpeed == 0) {
             document.getElementById("FasterAutos").innerHTML = "Faster Autos (MAXED)";
+            document.getElementById("fasterautosprice").remove();
             return;
         }
-        if (presses >= 20e9) {
-            presses -= 20e9;
+        if (presses >= this.fasterautosprice) {
+            presses -= this.fasterautosprice;
             autoSpeed = Math.trunc((autoSpeed / 2) * 1.3);
             this.fasterautoscount++;
+            this.fasterautosprice = Math.round(this.fasterautosprice * 1.15);
             document.getElementById("fasterautoscounter").innerHTML = this.fasterautoscount;
+            document.getElementById("fasterautosprice").innerHTML = "(" + this.fasterautosprice + ")";
             refresh();
         }
     },
@@ -222,8 +248,8 @@ let shop = {
     },
 
     GTP: function () {
-        if (diamond >= 4) {
-            diamond -= 4;
+        if (diamond >= this.gtpcost) {
+            diamond -= this.gtpcost;
             presses += (gold * 440000);
             gold = 0;
             this.GTPcount++;
@@ -233,8 +259,8 @@ let shop = {
     },
 
     PTG: function () {
-        if (diamond >= 4) {
-            diamond -= 4;
+        if (diamond >= this.ptgcost) {
+            diamond -= this.ptgcost;
             gold += (Math.trunc(presses / 440000));
             presses = 0;
             this.PTGcount++;
@@ -244,11 +270,13 @@ let shop = {
     },
 
     AABP: async function () {
-        if (diamond >= 10) {
-            diamond -= 10;
-            refresh();
+        if (diamond >= this.aabpcost) {
+            diamond -= this.aabpcost;
             this.autoautopressescount++;
+            this.aabpcost = Math.ceil(this.aabpcost * 1.15);
+            document.getElementById("aabpcost").innerHTML = "(" + this.aabpcost + ")";
             document.getElementById("autoautobuypresscounter").innerHTML = this.autoautopressescount;
+            refresh();
             if (this.autoautopressescount > 1) return;
             while (true) {
                 if (terminate) break;
@@ -260,9 +288,11 @@ let shop = {
     },
 
     autoBuyDiamond: async function () {
-        if (diamond >= 100) {
-            diamond -= 100;
+        if (diamond >= this.autobuydiamondcost) {
+            diamond -= this.autobuydiamondcost;
             this.autodiamondcount++;
+            this.autobuydiamondcost = Math.ceil(autobuydiamondcost * 1.15);
+            document.getElementById("autobuydiamondcost").innerHTML = "(" + this.autobuydiamondcost + ")";
             document.getElementById("autobuydiamondcounter").innerHTML = this.autodiamondcount;
             refresh();
             if (this.autodiamondcount > 1) return;
@@ -286,7 +316,7 @@ let shop = {
     },
 
     funnel: function () {
-        if (rainbow >= 30) {
+        if (rainbow >= this.funnelcost) {
             this.PTG();
             while (gold >= 50000)
                 this.getDiamond();
@@ -294,6 +324,8 @@ let shop = {
                 rainbow += Math.trunc(diamond / 13000);
                 diamond = 0;
             }
+            this.funnelcost = Math.ceil(this.funnelcost * 1.15);
+            document.getElementById("funnelcost").innerHTML = "(" + this.funnelcost + ")";
             refresh();
         }
     }
