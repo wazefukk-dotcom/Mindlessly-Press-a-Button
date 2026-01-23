@@ -1,22 +1,21 @@
 body {
-  user-select: none;
-  position: sticky;
+    position: sticky;
+    user-select: none;
+    -webkit-user-select: none;
+    font-family: Comfortaa, 'Arial Black', Arial, sans-serif;
 }
 
 #title {
     text-align: center;
     font-size: 3em;
     color: rebeccapurple;
-    font-family: Comfortaa, 'Arial Black', Arial, sans-serif;
 }
 
 #theButton {
     text-align: center;
     font-size: 4em;
     color: rebeccapurple;
-    font-family: Comfortaa, 'Arial Black', Arial, sans-serif;
     margin-top: 1em;
-    padding: 0;
     font-weight: bolder;
 }
 
@@ -28,7 +27,7 @@ body {
     margin-top: 1.9em;
     position: sticky;
     top: 2em;
-    z-index: 999;
+    z-index: 10;
 }
 
 .stat {
@@ -77,3 +76,48 @@ h2 {
     opacity: 60%;
     display: block;
 }
+
+.shopItemCounter {
+    font-style: italic;
+    opacity: 80%;
+    margin-left: 1.2em;
+    padding: 0;
+    font-size: 0.7em;
+}
+
+#menu {
+    background-color: lightcyan;
+    border: 3px solid black;
+    border-radius: 1.2em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    z-index: 11;
+    position: sticky;
+    top: 2em;
+    display: none;
+}
+
+#menutitle {
+    text-align: center;
+    margin-bottom: 1.8em;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.menuoptionbutton {
+    font-weight: bold;
+    font-size: 1.4em;
+    text-decoration: underline;
+}
+
+.menuoptiondesc {
+    font-style: italic;
+    font-size: 0.9em;
+    opacity: 80%;
+    margin-left: 10px;
+    margin-bottom: 40px;
+}
+
+.price, .shopItemName { display: inline; }
+

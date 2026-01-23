@@ -1,14 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>MPaB!</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 
-<body>
+<body id="body">
+
+  <div id="menu">
+    <div id="menutitle">MPaB</div>
+    <div style="text-align: center;">Buttons for settings and killswitches and stuff</div>
+    <div style="margin-bottom: 1.4em;">left shift to open/close</div>
+    <div style="margin-left: 30px;">
+      <div class="menuoption">
+        <div onclick="menu.terminate();" class="menuoptionbutton">Killswitch</div>
+        <div class="menuoptiondesc">Terminates all autoclickers, AutoBuys, and stuff of the sort. Note that you will not be refunded for anything terminated.</div>
+      </div>
+    </div>
+  </div>
 
   <h1 id="title">Mindlessly Press a Button</h1>
 
@@ -21,7 +33,7 @@
     <p id="perClick" class="stat">Presses per Press: 0</p>
     <p id="gold" class="stat">Gold: 0</p>
     <p id="diamond" class="stat">Diamond: 0</p>
-    <p id="rainbow" class="stat" style="display: none;">Rainbow: 0</p>
+    <p id="rainbow" class="stat">Rainbow: 0</p>
   </div>
 
   <hr>
@@ -29,26 +41,150 @@
   <h2 id="shopHeader">Shop</h2>
 
   <div id="shop">
-    <div class="shopItem" onclick="shop.P1ppp();">+1 Presses per Press (180)</div>
-    <div class="shopItem" onclick="shop.P5ppp();">+5 Presses per Press (500)</div>
-    <div class="shopItem" onclick="shop.auto();">+1 Autoclicker (30,000)</div>
-    <div class="shopItem" onclick="shop.getGold();">+1 Gold (440,000) </div>
-    <div class="shopItem" id="FasterAutos" onclick="shop.fasterAutos()">Faster Autos (20B) </div>
 
-    <hr class="minihr">
+    <div id="pressShop">
+      <div class="shopItem">
+        <div class="shopItemDesc">
+          <div onmousedown="shop.P1ppp();" class="shopItemName">+1 Presses per Press</div>
+          <div class="price" id="p1pppprice">(180)</div>
+        </div>
+        <div class="shopItemCounter" id="p1pppcounter">0</div>
+      </div>
+    
+      <div class="shopItem">
+        <div class="shopItemDesc">
+          <div onmousedown="shop.P5ppp();" class="shopItemName">+5 Presses per Press</div>
+          <div class="price" id="p5pppprice">(500)</div>
+        </div>
+        <div class="shopItemCounter" id="p5pppcounter">0</div>
+      </div>
+    
+      <div class="shopItem">
+        <div class="shopItemDesc">
+          <div onmousedown="shop.auto();" class="shopItemName">+1 Autoclicker</div>
+          <div class="price" id="autoprice">(30000)</div>
+        </div>
+        <div class="shopItemCounter" id="autocounter">0</div>
+      </div>
+    
+      <div class="shopItem">
+        <div class="shopItemDesc">
+          <div onmousedown="shop.getGold();" class="shopItemName">+1 gold (440000)</div>
+        </div>
+        <div class="shopItemCounter" id="buygoldcounter">0</div>
+      </div>
+    
+      <div class="shopItem">
+        <div class="shopItemDesc">
+          <div id="FasterAutos" onmousedown="shop.fasterAutos()" class="shopItemName">Faster Autos</div>
+          <div class="price" id="fasterautosprice">(30000000000)</div>
+        </div>
+        <div class="shopItemCounter" id="fasterautoscounter">0</div>
+      </div>
+  
+    </div>
 
-    <div class="shopItem goldUpg" onclick="shop.autoBuyPresses()">AutoBuy +1 Presses (3 gold)</div>
-    <div class="shopItem goldUpg" onclick="shop.autoBuyPresses_5()">AutoBuy +5 Presses (13 gold)</div>
-    <div class="shopItem goldUpg" onclick="shop.autoBuyAuto()">AutoBuy Autoclicker (50 gold)</div>
-    <div class="shopItem goldUpg" onclick="shop.autoBuyGold()">AutoBuy Gold (100 gold)</div>
-    <div class="shopItem goldUpg" onclick="shop.getDiamond()">+1 Diamond (50,000 gold)</div>
+    <div id="goldShop">
+      <hr class="minihr">
+      
+      <div class="shopItem goldUpg">
+        <div class="shopItemDesc">
+          <div onmousedown="shop.autoBuyPresses();" class="shopItemName">AutoBuy +1 Presses</div>
+          <div class="price" id="autobuypress1cost">(3)</div>
+        </div>
+        <div class="shopItemCounter" id="autobuypress1counter">0</div>
+      </div>
+      
+      <div class="shopItem goldUpg">
+        <div class="shopItemDesc">
+          <div onmousedown="shop.autoBuyPresses_5();" class="shopItemName">AutoBuy +5 Presses</div>
+          <div class="price" id="autobuypress5cost">(13)</div>
+        </div>
+        <div class="shopItemCounter" id="autobuypress5counter">0</div>
+      </div>
+      
+      <div class="shopItem goldUpg">
+        <div class="shopItemDesc">
+          <div onmousedown="shop.autoBuyAuto();" class="shopItemName">AutoBuy Autoclicker</div>
+          <div class="price" id="autobuyautocost">(50)</div>
+        </div>
+        <div class="shopItemCounter" id="autobuyautocounter">0</div>
+      </div>
 
-    <hr class="minihr">
+      <div class="shopItem goldUpg">
+        <div class="shopItemDesc">
+          <div onmousedown="shop.autoBuyGold()" class="shopItemName">AutoBuy Gold</div>
+          <div class="price" id="autobuygoldcost">(100)</div>
+        </div>
+        <div class="shopItemCounter" id="autobuygoldcounter">0</div>
+      </div>
+      
+      <div class="shopItem goldUpg">
+        <div class="shopItemDesc">
+          <div onmousedown="shop.getDiamond()" class="shopItemName">+1 Diamond</div>
+          <div class="price" id="getdiamondcost">(50000)</div>
+        </div>
+        <div class="shopItemCounter" id="1diamondcounter">0</div>
+      </div>
 
-    <div class="shopItem diamondUpg" onclick="shop.GTP()">Convert Gold to Presses (4 diamond)</div>
-    <div class="shopItem diamondUpg" onclick="shop.PTG()">Convert Presses to Gold (4 diamond)</div>
-    <div class="shopItem diamondUpg" onclick="shop.AABP()">AutoAutoBuy Presses (10 diamond)</div>
-    <div class="shopItem diamondUpg" onclick="shop.AABP()">AutoBuy Diamond (100 diamond)</div>
+    </div>
+
+    <div id="diamondShop">
+      <hr class="minihr">
+      
+      <div class="shopItem diamondUpg">
+        <div class="shopItemDesc">
+          <div onmousedown="shop.GTP()" class="shopItemName">Convert Gold to Presses</div>
+          <div class="price" id="gtpcost">(4)</div>
+        </div>
+        <div class="shopItemCounter" id="GTPcounter">0</div>
+      </div>
+      
+      <div class="shopItem diamondUpg">
+        <div class="shopItemDesc">
+          <div onmousedown="shop.PTG()" class="shopItemName">Convert Presses to Gold</div>
+          <div class="price" id="ptgcost">(4)</div>
+        </div>
+        <div class="shopItemCounter" id="PTGcounter">0</div>
+      </div>
+      
+      <div class="shopItem diamondUpg">
+        <div class="shopItemDesc">
+          <div onmousedown="shop.AABP()" class="shopItemName">AutoAutoBuy Presses</div>
+          <div class="price" id="aabpcost">(10)</div>
+        </div>
+        <div class="shopItemCounter" id="autoautobuypresscounter">0</div>
+      </div>
+      
+      <div class="shopItem diamondUpg">
+        <div class="shopItemDesc">
+          <div onmousedown="shop.autoBuyDiamond()" class="shopItemName">AutoBuy Diamond</div>
+          <div class="price" id="autobuydiamondcost">(100)</div>
+        </div>
+        <div class="shopItemCounter" id="autobuydiamondcounter">0</div>
+      </div>
+
+      <div class="shopItem diamondUpg">
+        <div class="shopItemDesc">
+          <div onmousedown="shop.buyRainbow()" class="shopItemName">+1 Rainbow</div>
+          <div class="price" id="buyrainbowcost">(13000)</div>
+        </div>
+        <div class="shopItemCounter" id="buyrainbowcounter">0</div>
+      </div>
+
+    </div>
+
+    <div id="rainbowShop">
+      <hr class="minihr">
+
+      <div class="shopItem rainbowUpg">
+        <div class="shopItemDesc">
+          <div onmousedown="shop.funnel()" class="shopItemName">Funnel</div>
+          <div class="price" id="funnelcost">(30)</div>
+        </div>
+      </div>
+
+    </div>
 
   </div>
 
